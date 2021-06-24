@@ -5,14 +5,10 @@ const withAuth = require('../../utils/auth');
 // URL: /api/comment
 router.post('/', withAuth, async (req, res) => {
   try {
-    const newComment = await Comment.create({
-      // TODO: COMMENT BODY IN REQUEST USING SPREAD
-
-      // TODO: SET USERID TO SESSION LOGGEDIN USERID
-    });
-    res.json(newComment);
+    const newComment = await Comment.create({...req.body, userId: req.session.userId})
+      res.json(newComment);
   } catch (err) {
-    res.status(500).json(err);
+      res.status(500).json(err);
   }
 });
 
