@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Tech Blog</title>
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="flex-column min-100-vh">
+
+  <header class="hero">
+    <h1 class="app-title"><a href="/dashboard">Your Dashboard</a></h1>
+  </header>
+
+  <main class="col-auto">
+    <h2>TESTING DASHBOARD</h2>
+    <div class="posts">
+  
+
+
+      <div class="posts list-group">
+        {{#each posts}}
+        <a class="list-item flex-row justify-space-between" href="/dashboard/edit/{{id}}">
+          <span>{{title}}</span>
+          <span>{{format_date createdAt}}</span>
+        </a>
+        {{/each}}
+      </div>
+
+      {{!-- <article class="card">
+        <div class="card-header flex-row justify-space-between">
+          <h2>
+            <a href="/post/{{id}}">{{title}}</a>
+          </h2>
+          <div>
+            Posted by {{User.username}} on {{format_date createdAt}}
+          </div>
+        </div>
+        <div class="card-body">
+          {{body}}
+        </div>
+      </article> --}}
+     
+    </div>
+
+
+  </main>
+
+  <footer class="footer flex-row justify-center">
+    <a href="/dashboard/new">➕ New Post</a>
+  </footer>
+</body>
+
+<script src="/js/logout.js"></script>
+
+</html>
