@@ -20,13 +20,11 @@ router.get('/', async (req, res) => {
 router.get('/post/:id', async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
-      include: [
-        User,
-        {
-          model: Comment,
-          include: [User]
-        }
-      ]
+      // TODO: YOUR CODE HERE
+      
+      include: [Comment]
+
+      
     });
 
     if (postData) {
@@ -57,6 +55,40 @@ router.get('/signup', (req, res) => {
   }
 
   res.render('signup');
+});
+
+
+router.get('/dashboard/edit/:id', async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+  const postData = await Post.findByPk(req.params.id)
+  console.log(postData)
+  const post = postData.get({plain:true})
+  console.log(post + "POST CONSOLE")
+  res.render('edit-post', post)
+})
+
+router.get('/dashboard', async (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+  const postData = await Post.findAll({include: [User]}) 
+
+  const posts = postData.map((post) => post.get({ plain: true }));
+  res.render('dashboard', {posts});
+});
+
+
+router.get('/dashboard/new', (req, res) => {
+  if (!req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('new-post');
 });
 
 module.exports = router;

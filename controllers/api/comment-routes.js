@@ -3,12 +3,23 @@ const { Comment } = require('../../models/');
 const withAuth = require('../../utils/auth');
 
 // URL: /api/comment
-router.post('/', withAuth, async (req, res) => {
+router.post('/', async (req, res) => {
+  console.log({...req.body})
   try {
-    const newComment = await Comment.create({...req.body, userId: req.session.userId})
-      res.json(newComment);
+    const newComment = await Comment.create({
+      // TODO: COMMENT BODY IN REQUEST USING SPREAD
+      
+      ...req.body,
+      userId: req.session.userId
+
+      // TODO: SET USERID TO SESSION LOGGEDIN USERID
+      
+
+    });
+    console.log(newComment)
+    res.json(newComment);
   } catch (err) {
-      res.status(500).json(err);
+    res.status(500).json(err);
   }
 });
 
