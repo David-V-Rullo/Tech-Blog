@@ -14,7 +14,7 @@ This is a basic Tech Blog platform. Via the web app UI you can login, create a b
   
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![Screenshot](https://user-images.githubusercontent.com/80405589/125873982-2912b692-45c9-4170-a493-9c53aa3467b9.JPG)
 
   
 ## Demo
